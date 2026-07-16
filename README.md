@@ -9,9 +9,9 @@ an ordered chain of heuristics, and the first one that recognizes the text
 wins:
 
 1. **Thunderbird forwarded message** — text beginning with
-   `-------- Forwarded Message --------`. The email headers are wrapped in a
-   fenced ` ``` ` code block and every body line is quoted with the Markdown
-   `> ` prefix.
+   `-------- Forwarded Message --------`. That marker line is dropped, the
+   email headers that follow it are wrapped in a fenced ` ``` ` code block,
+   and every body line is quoted with the Markdown `> ` prefix.
 
 2. **HTML** — obvious headings, paragraphs, links, bold, and italics are
    converted to their Markdown equivalents; most other markup is stripped,
