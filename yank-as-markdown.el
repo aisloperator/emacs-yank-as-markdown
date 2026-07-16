@@ -109,13 +109,13 @@ Matches when TEXT begins (possibly after leading whitespace) with
 
 (defun yank-as-markdown--convert-thunderbird (text)
   "Convert a Thunderbird forwarded message TEXT to Markdown.
-The marker line and the header block that follows it (everything
-up to the first blank line) are placed inside a ``` fenced code
-block so the headers render verbatim.  Every line of the message
-body is prefixed with \"> \" so the body renders as a Markdown
-block quote.  Blank body lines get a bare \">\" so the quote is
-not broken into separate blocks."
-  (let* ((lines (split-string (string-trim-left text) "\n"))
+The marker line is dropped.  The header block that follows it
+\(everything up to the first blank line) is placed inside a ```
+fenced code block so the headers render verbatim.  Every line of
+the message body is prefixed with \"> \" so the body renders as a
+Markdown block quote.  Blank body lines get a bare \">\" so the
+quote is not broken into separate blocks."
+  (let* ((lines (cdr (split-string (string-trim-left text) "\n")))
          (headers '())
          (body '())
          (in-headers t))
