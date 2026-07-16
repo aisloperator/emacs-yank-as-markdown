@@ -53,9 +53,10 @@ The whole package is a **predicate/converter dispatch table**:
 Current heuristics, in dispatch order:
 
 1. **Thunderbird forwarded message** (`--thunderbird-p` / `--convert-thunderbird`) —
-   triggers on a leading `-------- Forwarded Message --------` marker. Wraps the
-   header block (up to the first blank line) in a fenced ` ``` ` code block and
-   prefixes every body line with `> ` (blank body lines get a bare `>` so the
+   triggers on a leading `-------- Forwarded Message --------` marker. The
+   marker line itself is dropped; the header block that follows it (up to the
+   first blank line) is wrapped in a fenced ` ``` ` code block, and every body
+   line is prefixed with `> ` (blank body lines get a bare `>` so the
    blockquote isn't broken).
 2. **HTML** (`--html-p` / `--convert-html`) — cheap tag-sniffing predicate, then a
    sequence of buffer-local regex passes (via `with-temp-buffer`) converts
